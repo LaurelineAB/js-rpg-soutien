@@ -1,0 +1,6 @@
+
+class Character {
+
+}
+
+export { Character };
