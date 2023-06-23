@@ -30,7 +30,8 @@ class Character {
     //METHODS
     moveUp()
     {
-        if (this.#posY >= 0)
+        let newPosition = document.querySelector(`.col-${this.#posX}.row-${this.#posY-1}`);
+        if (this.#posY >= 0 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
         {
             this.#posY = this.#posY - 1;
             this.render();
@@ -38,7 +39,8 @@ class Character {
     }
     moveDown()
     {
-        if (this.#posY <= 19)
+        let newPosition = document.querySelector(`.col-${this.#posX}.row-${this.#posY+1}`);
+        if (this.#posY <= 19 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
         {
             this.#posY = this.#posY + 1;
             this.render();
@@ -46,7 +48,8 @@ class Character {
     }
     moveLeft()
     {
-        if (this.#posX >= 0)
+        let newPosition = document.querySelector(`.col-${this.#posX-1}.row-${this.#posY}`);
+        if (this.#posX >= 0 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
         {
             this.#posX = this.#posX - 1;
             this.render();
@@ -54,7 +57,8 @@ class Character {
     }
     moveRight()
     {
-        if (this.#posX <= 29)
+        let newPosition = document.querySelector(`.col-${this.#posX+1}.row-${this.#posY}`);
+        if (this.#posX <= 29 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
         {
             this.#posX = this.#posX + 1;
             this.render();
@@ -62,7 +66,6 @@ class Character {
     }
     render()
     {
-        console.log(this.#posY, this.posX);
         let boxes = document.querySelectorAll("section");
         for (let box of boxes)
         {
