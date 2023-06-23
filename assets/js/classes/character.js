@@ -3,12 +3,14 @@ class Character {
     #posX;
     #posY;
     #godMode;
+    #axe;
     
     constructor(posY = 15, posX = 19)
     {
         this.#posX = posX;
         this.#posY = posY;
         this.#godMode = false;
+        this.#axe = false;
     };
     
     get posX()
@@ -36,6 +38,15 @@ class Character {
     set godMode (godMode)
     {
         this.#godMode = godMode;
+    }
+    
+    get axe()
+    {
+        return this.#axe;
+    }
+    set axe (axe)
+    {
+        this.#axe = axe;
     }
     
     //METHODS
@@ -98,11 +109,36 @@ class Character {
     render()
     {
         let boxes = document.querySelectorAll("section");
+        //Sans boucle, récupérer la case avec ".character" seulement
         for (let box of boxes)
         {
             box.classList.remove("character");
+            box.classList.remove("axe");
             let newPosition = document.querySelector(`.col-${this.#posX}.row-${this.#posY}`);
             newPosition.classList.add("character");
+            if (this.#axe === true)
+            {
+                newPosition.classList.add("axe");
+            }
+        }
+    }
+    cutTree()
+    {
+        let boxUp = document.querySelector(`.col-${this.#posX}.row-${this.#posY-1}`);
+        let boxDown = document.querySelector(`.col-${this.#posX}.row-${this.#posY+1}`);
+        let boxLeft = document.querySelector(`.col-${this.#posX-1}.row-${this.#posY}`);
+        let boxRight = document.querySelector(`.col-${this.#posX+1}.row-${this.#posY}`);
+        let aroundBoxes = [boxUp, boxDown, boxLeft, boxRight];
+        if (this.#axe === true)
+        {
+            for (let box of aroundBoxes)
+            {
+                if (box.classList.contains("tree"))
+                {
+                    box.classList.remove("tree");
+                    box.classList.add("log");
+                }
+            }
         }
     }
 }

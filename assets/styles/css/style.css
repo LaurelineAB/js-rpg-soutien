@@ -164,6 +164,24 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+.character.grass.axe {
+  background-color: #5da88a;
+  background-image: url("../../images/axe.svg"), url("../../images/character.svg"), url("../../images/grass.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.character.dirt.axe {
+  background-color: #9b6a49;
+  background-image: url("../../images/axe.svg"), url("../../images/character.svg"), url("../../images/dirt.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.character.sand.axe {
+  background-color: #f9ee67;
+  background-image: url("../../images/axe.svg"), url("../../images/character.svg"), url("../../images/sand.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 body {
   font-size: 14px;
