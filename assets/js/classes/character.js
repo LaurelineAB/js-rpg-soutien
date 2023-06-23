@@ -2,11 +2,13 @@
 class Character {
     #posX;
     #posY;
+    #godMode;
     
     constructor(posY = 15, posX = 19)
     {
         this.#posX = posX;
         this.#posY = posY;
+        this.#godMode = false;
     };
     
     get posX()
@@ -27,11 +29,25 @@ class Character {
         this.#posX = posY;
     };
     
+    get godMode()
+    {
+        return this.#godMode;
+    }
+    set godMode (godMode)
+    {
+        this.#godMode = godMode;
+    }
+    
     //METHODS
     moveUp()
     {
         let newPosition = document.querySelector(`.col-${this.#posX}.row-${this.#posY-1}`);
-        if (this.#posY >= 0 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
+        if (this.#posY >= 0 && this.#godMode === true)
+        {
+            this.#posY = this.#posY - 1;
+            this.render();
+        }
+        else if (this.#posY >= 0 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump") && this.#godMode === false)
         {
             this.#posY = this.#posY - 1;
             this.render();
@@ -40,7 +56,12 @@ class Character {
     moveDown()
     {
         let newPosition = document.querySelector(`.col-${this.#posX}.row-${this.#posY+1}`);
-        if (this.#posY <= 19 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
+        if (this.#posY <= 19 && this.#godMode === true)
+        {
+            this.#posY = this.#posY + 1;
+            this.render();
+        }
+        else if (this.#posY <= 19 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump") && this.#godMode === false)
         {
             this.#posY = this.#posY + 1;
             this.render();
@@ -49,7 +70,12 @@ class Character {
     moveLeft()
     {
         let newPosition = document.querySelector(`.col-${this.#posX-1}.row-${this.#posY}`);
-        if (this.#posX >= 0 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
+        if (this.#posX >= 0 && this.#godMode === true)
+        {
+            this.#posX = this.#posX - 1;
+            this.render();
+        }
+        else if (this.#posX >= 0 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump") && this.#godMode === false)
         {
             this.#posX = this.#posX - 1;
             this.render();
@@ -58,7 +84,12 @@ class Character {
     moveRight()
     {
         let newPosition = document.querySelector(`.col-${this.#posX+1}.row-${this.#posY}`);
-        if (this.#posX <= 29 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump"))
+        if (this.#posX <= 29 && this.#godMode === true)
+        {
+            this.#posX = this.#posX + 1;
+            this.render();
+        }
+        else if (this.#posX <= 29 && !newPosition.classList.contains("water") && !newPosition.classList.contains("rock") && !newPosition.classList.contains("tree") && !newPosition.classList.contains("stump") && this.#godMode === false)
         {
             this.#posX = this.#posX + 1;
             this.render();
